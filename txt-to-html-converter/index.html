@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TXT to HTML Converter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </div>
+    <div>
+      <h1>TXT to HTML Converter</h1>
+      <p>เครื่องมือแปลงไฟล์ข้อความรับประกันภาษาไทย 100%</p>
+    </div>
+  </div>
+  <div class="samples">
+    <span>โหลดตัวอย่าง:</span>
+    <button class="chip" data-sample="article">บทความทั่วไป</button>
+    <button class="chip" data-sample="meeting">รายงานประชุม</button>
+    <button class="chip" data-sample="story">เรื่องสั้น / นิยาย</button>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1. อัปโหลดไฟล์ .txt</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept=".txt,text/plain" hidden>
+      <strong>คลิกเพื่อเลือกไฟล์ หรือลากไฟล์มาวางที่นี่</strong>
+      <span id="fileName">รองรับ UTF-8 และ Windows-874 (TIS-620) อัตโนมัติ</span>
+    </label>
+  </section>
+
+  <section class="card">
+    <h2>2. ตั้งค่า</h2>
+    <div class="grid2">
+      <label class="field">ชื่อหน้าเว็บ (Title)
+        <input type="text" id="title" value="เอกสารของฉัน">
+      </label>
+      <label class="field">ฟอนต์
+        <select id="font">
+          <option value="Noto Sans Thai">Noto Sans Thai</option>
+          <option value="Sarabun">Sarabun</option>
+          <option value="Prompt">Prompt</option>
+          <option value="Kanit">Kanit</option>
+        </select>
+      </label>
+    </div>
+    <label class="check"><input type="checkbox" id="optP" checked> แปลงบรรทัดว่างเป็นย่อหน้า (&lt;p&gt;)</label>
+    <label class="check"><input type="checkbox" id="optA" checked> แปลง URL เว็บไซต์เป็นลิงก์กดได้ (&lt;a&gt;)</label>
+    <label class="check"><input type="checkbox" id="optE" checked> ป้องกันอักขระพิเศษ HTML (Escape HTML)</label>
+  </section>
+
+  <section class="card">
+    <div class="row"><h2>3. ข้อความต้นฉบับ (.txt)</h2><span class="count" id="count">0 ตัวอักษร</span></div>
+    <textarea id="src" spellcheck="false" placeholder="วางข้อความที่นี่ หรืออัปโหลดไฟล์ด้านบน"></textarea>
+  </section>
+
+  <section class="card result">
+    <div class="row">
+      <div class="tabs" role="tablist">
+        <button class="tab on" data-tab="preview" role="tab">ตัวอย่างหน้าเว็บ (Preview)</button>
+        <button class="tab" data-tab="code" role="tab">โค้ด HTML (Source Code)</button>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" id="copy">คัดลอกโค้ด</button>
+        <button class="btn" id="download">ดาวน์โหลด .html</button>
+      </div>
+    </div>
+    <iframe id="preview" title="ตัวอย่างหน้าเว็บ"></iframe>
+    <textarea id="code" readonly hidden spellcheck="false"></textarea>
+  </section>
+</main>
+<script src="assets/samples.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
